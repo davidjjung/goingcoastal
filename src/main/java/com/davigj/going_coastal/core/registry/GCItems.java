@@ -29,6 +29,6 @@ public class GCItems {
     }
 
     public static final class GCFoods {
-        public static final FoodProperties CRABAPPLES = (new FoodProperties.Builder()).nutrition(1).saturationModifier(0.1F).build();
+        public static final FoodProperties CRABAPPLES = (new FoodProperties.Builder()).nutrition(2).saturationModifier(0.2F).build();
     }
 }
