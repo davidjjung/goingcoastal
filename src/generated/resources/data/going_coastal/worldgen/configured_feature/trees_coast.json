@@ -1,7 +1,7 @@
 {
   "type": "minecraft:random_selector",
   "config": {
-    "default": "going_coastal:crabapple_with_crabgrass",
+    "default": "going_coastal:fruit_crabapple_with_crabgrass_05",
     "features": [
       {
         "chance": 0.25,
@@ -12,8 +12,8 @@
         "feature": "going_coastal:fruit_crabby_crabapple_tree"
       },
       {
-        "chance": 0.35,
-        "feature": "going_coastal:fruit_crabapple_with_crabgrass_05"
+        "chance": 0.15,
+        "feature": "going_coastal:crabapple_with_crabgrass"
       }
     ]
   }
