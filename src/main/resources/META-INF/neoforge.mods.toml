@@ -31,3 +31,31 @@ type = "required"
 versionRange = "[${neoforge},)"
 ordering = "AFTER"
 side = "BOTH"
+
+[[dependencies.going_coastal]]
+modId = "blueprint"
+type = "required"
+versionRange = "[${blueprint},)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.going_coastal]]
+modId = "spawn"
+type = "optional"
+versionRange = "[4.0.4},)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.going_coastal]]
+modId = "nomansland"
+type = "optional"
+versionRange = "[1.5.6},)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.going_coastal]]
+modId = "fieldguide"
+type = "optional"
+versionRange = "[1.10.1},)"
+ordering = "AFTER"
+side = "BOTH"

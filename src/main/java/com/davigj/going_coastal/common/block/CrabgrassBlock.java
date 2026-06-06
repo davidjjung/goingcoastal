@@ -1,8 +1,12 @@
 package com.davigj.going_coastal.common.block;
 
 import com.davigj.going_coastal.core.other.GCBlockTags;
+import com.davigj.going_coastal.core.registry.GCBlocks;
+import com.davigj.going_coastal.core.registry.GCFeatures;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
@@ -13,6 +17,7 @@ import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.IShearable;
@@ -46,10 +51,13 @@ public class CrabgrassBlock extends BushBlock implements IShearable, Bonemealabl
     }
 
     public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
-//        level.registryAccess().registry(Registries.CONFIGURED_FEATURE).flatMap((value) -> {
-//            return value.getHolder(WildCropGeneration.FEATURE_PATCH_SANDY_SHRUB);
-//        }).ifPresent((value) -> {
-//            ((ConfiguredFeature)value.value()).place(level, level.getChunkSource().getGenerator(), random, pos.above());
-//        });
+        ResourceKey<ConfiguredFeature<?, ?>> feature;
+        feature = state.is(GCBlocks.COASTAL_CRABGRASS) ? GCFeatures.GCConfiguredFeatures.PATCH_COASTAL_CRABGRASS :
+                GCFeatures.GCConfiguredFeatures.PATCH_CRABGRASS;
+        level.registryAccess().registry(Registries.CONFIGURED_FEATURE).flatMap((value) -> {
+            return value.getHolder(feature);
+        }).ifPresent((value) -> {
+            ((ConfiguredFeature)value.value()).place(level, level.getChunkSource().getGenerator(), random, pos.above());
+        });
     }
 }
