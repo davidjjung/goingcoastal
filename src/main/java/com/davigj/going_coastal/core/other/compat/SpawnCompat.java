@@ -1,6 +1,7 @@
 package com.davigj.going_coastal.core.other.compat;
 
 import com.davigj.going_coastal.common.block.CrabappleSaplingBlock;
+import com.davigj.going_coastal.core.mixin.ICrabAccessor;
 import com.davigj.going_coastal.core.other.GCItemTags;
 import com.davigj.going_coastal.core.registry.GCBlocks;
 import com.ninni.spawn.registry.SpawnEntityType;
@@ -14,12 +15,11 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.ai.goal.TemptGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -33,13 +33,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.common.CommonHooks;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class SpawnCompat {
     public static final ResourceLocation FRUITY = ResourceLocation.fromNamespaceAndPath("going_coastal", "fruity");
+    public static final ResourceLocation TRAITOR = ResourceLocation.fromNamespaceAndPath("spawn", "traitor");
 
     public static void addCrabs(List<BlockPos> potentialSpawns, WorldGenLevel level, RandomSource random, boolean baby) {
         Collections.shuffle(potentialSpawns, new Random(level.getSeed()));
@@ -77,7 +75,7 @@ public class SpawnCompat {
                         crab.getY() + 0.5, crab.getZ(), 8, 0.5, 0.5, 0.5, 0);
             }
             crab.setPregnant(false);
-            crab.setBuryingCooldown(0);
+            crab.setBuryingCooldown(60);
             return true;
         }
         return false;
@@ -91,7 +89,31 @@ public class SpawnCompat {
                 temptTag = GCItemTags.FRUITY_COASTAL_CRAB_TEMPTS;
                 crab.goalSelector.addGoal(0, new BuryBirthGoal(crab, 1.0));
             }
+            if (crab.getVariant().equals(TRAITOR)) {
+                crab.targetSelector.addGoal(10, new CrabAttackVillagerGoal(crab));
+            }
             crab.goalSelector.addGoal(1, new TemptGoal(crab, 1.25, Ingredient.of(temptTag), false));
+        }
+    }
+
+    static class CrabAttackVillagerGoal extends NearestAttackableTargetGoal<AbstractVillager> {
+        public CrabAttackVillagerGoal(CoastalCrab crab) {
+            super(crab, AbstractVillager.class, 200, true, true, p_199899_ -> !p_199899_.isBaby());
+        }
+
+        public boolean canUse() {
+            return super.canUse() && !this.mob.isBaby();
+        }
+
+        public boolean canContinueToUse() {
+            if (this.mob instanceof CoastalCrab crab) {
+                if (((ICrabAccessor)crab).getDidShoot()) {
+                    ((ICrabAccessor)crab).callSetDidShoot();
+                    return false;
+                }
+            }
+
+            return super.canContinueToUse();
         }
     }
 
@@ -123,7 +145,7 @@ public class SpawnCompat {
                         if (growable.isValidBonemealTarget(level, saplingPos, plantState) &&
                                 CommonHooks.canCropGrow(level, saplingPos, plantState, true)) {
                             level.levelEvent(1505, saplingPos, 15);
-                            if (growable.isBonemealSuccess(level, level.random, saplingPos, plantState)) {
+                            if (growable.isBonemealSuccess(level, level.random, saplingPos, plantState) && crab.getRandom().nextInt(15) == 0) {
                                 growable.performBonemeal(level, level.random, saplingPos, plantState);
                                 CommonHooks.fireCropGrowPost(level, saplingPos, plantState);
                             }
@@ -174,6 +196,10 @@ public class SpawnCompat {
             if (!level.getBlockState(pos.above()).isAir() || !level.getBlockState(pos).is(SpawnTags.COASTAL_CRAB_BURY_BLOCKS)) {
                 return false;
             }
+
+            List<CoastalCrab> crabs = this.mob.level().getEntitiesOfClass(CoastalCrab.class, new AABB(pos).inflate(1.25),
+                    (crab) -> !crab.is(this.mob) && crab.isBuried());
+            if (!crabs.isEmpty()) return false;
 
             for (int x = -2; x <= 2; x++) {
                 for (int y = -1; y <= 1; y++) {

@@ -6,7 +6,8 @@
   "refmap": "going_coastal.refmap.json",
   "mixins": [
     "CoastalCrabMixin",
-    "CrabBubbleMixin"
+    "CrabBubbleMixin",
+    "ICrabAccessor"
   ],
   "client": [
   ],

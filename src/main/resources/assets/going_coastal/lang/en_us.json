@@ -9,5 +9,6 @@
   "block.going_coastal.coastal_crabgrass": "Coastal Crabgrass",
   "item.going_coastal.crabapples": "Crabapples",
 
-  "fieldguide.entity.spawn.coastal_crab.going_coastal:fruity.description" : "A neutral mob found on beaches that can shoot Bubbles and bury itself. Fits in a Bucket. \n\nThis variant fiercely defends crabapple trees, depending on their fruit and saplings to breed."
+  "fieldguide.entity.spawn.coastal_crab.going_coastal:fruity.description" : "A neutral mob found on beaches that can shoot Bubbles and bury itself. Fits in a Bucket. \n\nThis variant fiercely defends crabapple trees, depending on their fruit and saplings to breed.",
+  "fieldguide.entity.spawn.coastal_crab.spawn:traitor.description" : "A neutral mob found on beaches that can shoot Bubbles and bury itself. Fits in a Bucket. \n\nThis variant occasionally displays hostile behavior towards Villagers."
 }
