@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "going_coastal:block/crabapple_leaves"
+  }
+}

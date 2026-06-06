@@ -1,0 +1,17 @@
+{
+  "values": [
+    {
+      "id": "going_coastal:crabapple_sapling",
+      "structure_nbt": "going_coastal:crabapple",
+      "components": [
+        "minecraft:dark_oak_log",
+        "going_coastal:crabapple_leaves",
+        "going_coastal:flowering_crabapple_leaves",
+        "going_coastal:crabapple_fruit_leaves",
+        "going_coastal:crabgrass",
+        "going_coastal:coastal_crabgrass",
+        "going_coastal:crabapples_fruit"
+      ]
+    }
+  ]
+}

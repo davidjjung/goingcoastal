@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "com.davigj.going_coastal.core.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "refmap": "going_coastal.refmap.json",
+  "mixins": [
+    "CoastalCrabMixin",
+    "CrabBubbleMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

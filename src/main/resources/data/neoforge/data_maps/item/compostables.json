@@ -1,0 +1,22 @@
+{
+  "values": {
+    "going_coastal:crabapple_leaves": {
+      "chance": 0.3
+    },
+    "going_coastal:flowering_crabapple_leaves": {
+      "chance": 0.3
+    },
+    "going_coastal:crabgrass": {
+      "chance": 0.1
+    },
+    "going_coastal:coastal_crabgrass": {
+      "chance": 0.3
+    },
+    "going_coastal:crabapples": {
+      "chance": 0.4
+    },
+    "going_coastal:crabapple_sapling": {
+      "chance": 0.3
+    }
+  }
+}

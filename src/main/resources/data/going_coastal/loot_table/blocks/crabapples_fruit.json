@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "going_coastal:crabapples",
+          "conditions": [
+            {
+              "condition": "minecraft:survives_explosion"
+            },
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "going_coastal:crabapples_fruit",
+              "properties": {
+                "age": "3"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "random_sequence": "going_coastal:blocks/crabapples_fruit"
+}

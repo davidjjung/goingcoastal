@@ -1,0 +1,33 @@
+modLoader = "javafml"
+loaderVersion = "[1,)"
+issueTrackerURL = "https://github.com/davidjjung/goingcoastal/issues"
+license = "MIT License"
+
+[[mixins]]
+config = "going_coastal.mixins.json"
+
+[[mods]]
+modId = "going_coastal"
+version = "${mod_version}"
+logoFile = "logo.png"
+itemIcon = "going_coastal:crabapples"
+configBackground = "minecraft:textures/block/dirt.png"
+authors = "DavigJ"
+credits = ""
+displayURL = "https://modrinth.com/mod/going-coastal"
+displayName = "Going Coastal"
+description = '''Beachfront foragers shall go hungry no more.'''
+
+[[dependencies.going_coastal]]
+modId = "minecraft"
+type = "required"
+versionRange = "[${mc_version}]"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.going_coastal]]
+modId = "neoforge"
+type = "required"
+versionRange = "[${neoforge},)"
+ordering = "AFTER"
+side = "BOTH"

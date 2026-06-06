@@ -1,0 +1,116 @@
+{
+  "type": "going_coastal:crabapple_tree",
+  "config": {
+    "decorators": [
+      {
+        "type": "going_coastal:crabgrass",
+        "block_provider": {
+          "type": "minecraft:weighted_state_provider",
+          "entries": [
+            {
+              "data": {
+                "Name": "going_coastal:crabgrass"
+              },
+              "weight": 3
+            },
+            {
+              "data": {
+                "Name": "going_coastal:coastal_crabgrass"
+              },
+              "weight": 1
+            }
+          ]
+        },
+        "probability": 0.3
+      },
+      {
+        "type": "going_coastal:crabapples",
+        "block_provider": {
+          "type": "minecraft:weighted_state_provider",
+          "entries": [
+            {
+              "data": {
+                "Name": "going_coastal:crabapple_fruit_leaves",
+                "Properties": {
+                  "distance": "7",
+                  "persistent": "false",
+                  "waterlogged": "false"
+                }
+              },
+              "weight": 3
+            }
+          ]
+        },
+        "probability": 0.135
+      }
+    ],
+    "dirt_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:sand"
+      }
+    },
+    "foliage_placer": {
+      "type": "minecraft:fancy_foliage_placer",
+      "height": 3,
+      "offset": 1,
+      "radius": 2
+    },
+    "foliage_provider": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "going_coastal:crabapple_leaves",
+            "Properties": {
+              "distance": "7",
+              "persistent": "false",
+              "waterlogged": "false"
+            }
+          },
+          "weight": 3
+        },
+        {
+          "data": {
+            "Name": "going_coastal:flowering_crabapple_leaves",
+            "Properties": {
+              "distance": "7",
+              "persistent": "false",
+              "waterlogged": "false"
+            }
+          },
+          "weight": 1
+        }
+      ]
+    },
+    "force_dirt": false,
+    "ignore_vines": false,
+    "minimum_size": {
+      "type": "minecraft:two_layers_feature_size",
+      "limit": 1,
+      "lower_size": 0,
+      "upper_size": 1
+    },
+    "trunk_placer": {
+      "type": "minecraft:bending_trunk_placer",
+      "base_height": 4,
+      "bend_length": {
+        "type": "minecraft:uniform",
+        "max_inclusive": 2,
+        "min_inclusive": 1
+      },
+      "height_rand_a": 2,
+      "height_rand_b": 0,
+      "min_height_for_leaves": 3
+    },
+    "trunk_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:dark_oak_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    }
+  }
+}

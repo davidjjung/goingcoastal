@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "going_coastal:block/coastal_crabgrass"
+  }
+}
