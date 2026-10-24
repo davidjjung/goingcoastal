@@ -1,8 +1,10 @@
 package com.davigj.going_coastal.core.registry;
 
+import com.davigj.going_coastal.common.item.JamBottleItem;
 import com.davigj.going_coastal.core.GoingCoastal;
 import com.teamabnormals.blueprint.core.util.item.CreativeModeTabContentsPopulator;
 import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
+import com.teamabnormals.upgrade_aquatic.core.registry.UAItems;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
@@ -16,19 +18,20 @@ import java.util.function.Supplier;
 public class GCItems {
     public static final ItemSubRegistryHelper ITEMS;
     public static final DeferredItem<Item> CRABAPPLES;
+    public static final DeferredItem<Item> CRABAPPLE_JAM_BOTTLE;
 
     static {
         ITEMS = (ItemSubRegistryHelper) GoingCoastal.REGISTRY_HELPER.getItemSubHelper();
-        CRABAPPLES = ITEMS.createItem("crabapples", () -> {
-        return new Item((new Item.Properties()).food(GCFoods.CRABAPPLES));
-        });
+        CRABAPPLES = ITEMS.createItem("crabapples", () -> {return new Item((new Item.Properties()).food(GCFoods.CRABAPPLES));});
+        CRABAPPLE_JAM_BOTTLE = ITEMS.createItem("crabapple_jam_bottle", () -> {return new JamBottleItem((new Item.Properties()).food(GCFoods.CRABAPPLE_JAM));});
     }
 
     public static void setupTabEditors() {
-        CreativeModeTabContentsPopulator.mod(GoingCoastal.MOD_ID).tab(CreativeModeTabs.FOOD_AND_DRINKS).addItemsBefore(Ingredient.of(new ItemLike[]{Items.CHORUS_FRUIT}), new Supplier[]{CRABAPPLES});
+        CreativeModeTabContentsPopulator.mod(GoingCoastal.MOD_ID).tab(CreativeModeTabs.FOOD_AND_DRINKS).addItemsBefore(Ingredient.of(new ItemLike[]{Items.CHORUS_FRUIT}), new Supplier[]{CRABAPPLES, CRABAPPLE_JAM_BOTTLE});
     }
 
     public static final class GCFoods {
         public static final FoodProperties CRABAPPLES = (new FoodProperties.Builder()).nutrition(2).saturationModifier(0.2F).build();
+        public static final FoodProperties CRABAPPLE_JAM = (new FoodProperties.Builder()).nutrition(2).saturationModifier(0.4F).alwaysEdible().build();
     }
 }

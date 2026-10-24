@@ -33,14 +33,14 @@ public class GCClientCompat {
     @SubscribeEvent
     public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
         event.register((state, level, pos, tintIndex) -> level != null && pos != null ? BiomeColors.getAverageGrassColor(level, pos) : GrassColor.get(0.5D, 1.0D),
-                GCBlocks.CRABGRASS.get(),
-                GCBlocks.COASTAL_CRABGRASS.get()
+                GCBlocks.CRABGRASS.get()
+//                GCBlocks.COASTAL_CRABGRASS.get()
         );
     }
 
     @SubscribeEvent
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
         event.register((item, tintIndex) -> GrassColor.get(0.5D, 1.0D), GCBlocks.CRABGRASS);
-        event.register((item, tintIndex) -> GrassColor.get(0.5D, 1.0D), GCBlocks.COASTAL_CRABGRASS);
+//        event.register((item, tintIndex) -> GrassColor.get(0.5D, 1.0D), GCBlocks.COASTAL_CRABGRASS);
     }
 }

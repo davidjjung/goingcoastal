@@ -7,7 +7,7 @@ import com.davigj.going_coastal.core.registry.GCBlocks;
 import com.ninni.spawn.registry.SpawnEntityType;
 import com.ninni.spawn.registry.SpawnSoundEvents;
 import com.ninni.spawn.registry.SpawnTags;
-import com.ninni.spawn.server.entity.mob.CoastalCrab;
+import com.ninni.spawn.server.entity.mob.arthropod.CoastalCrab;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;

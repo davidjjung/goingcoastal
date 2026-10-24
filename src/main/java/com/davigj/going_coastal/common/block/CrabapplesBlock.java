@@ -4,7 +4,6 @@ import com.davigj.going_coastal.core.other.compat.SpawnCompat;
 import com.davigj.going_coastal.core.registry.GCBlocks;
 import com.davigj.going_coastal.core.registry.GCItems;
 import com.mojang.serialization.MapCodec;
-import com.ninni.spawn.server.entity.mob.CoastalCrab;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;

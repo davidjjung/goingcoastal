@@ -37,7 +37,7 @@ public class GCBlocks {
     static {
         BLOCKS = (BlockSubRegistryHelper) GoingCoastal.REGISTRY_HELPER.getBlockSubHelper();
         CRABGRASS = BLOCKS.createBlock("crabgrass", () -> {
-            return new CrabgrassBlock(Blocks.SHORT_GRASS.properties());
+            return new CrabgrassBlock(Blocks.SHORT_GRASS.properties().offsetType(BlockBehaviour.OffsetType.XZ));
         });
         COASTAL_CRABGRASS = BLOCKS.createBlock("coastal_crabgrass", () -> {
             return new CrabgrassBlock(Blocks.SHORT_GRASS.properties());

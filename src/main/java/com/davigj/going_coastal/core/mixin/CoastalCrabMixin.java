@@ -2,11 +2,12 @@ package com.davigj.going_coastal.core.mixin;
 
 import com.davigj.going_coastal.core.other.GCItemTags;
 import com.davigj.going_coastal.core.registry.GCBlocks;
-import com.ninni.spawn.server.entity.mob.CoastalCrab;
+import com.ninni.spawn.registry.SpawnTags;
+import com.ninni.spawn.server.entity.mob.arthropod.CoastalCrab;
+import com.ninni.teallib.api.common.entity.misc.base.AnimatedVariantAnimal;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.entity.AgeableMob;
@@ -32,13 +33,10 @@ import static com.davigj.going_coastal.core.other.compat.SpawnCompat.FRUITY;
 
 @Pseudo
 @Mixin(CoastalCrab.class)
-public abstract class CoastalCrabMixin extends Animal {
+public abstract class CoastalCrabMixin extends AnimatedVariantAnimal {
     protected CoastalCrabMixin(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
     }
-
-    @Shadow
-    public abstract ResourceLocation getVariant();
 
     @Shadow public abstract void setPregnant(boolean pregnant);
 
@@ -99,15 +97,24 @@ public abstract class CoastalCrabMixin extends Animal {
 
     @Unique
     private boolean gc$canFindSapling(BlockPos pos) {
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos();
+        for (int x = -4; x <= 4; x++) {
+            for (int y = -2; y <= 2; y++) {
+                for (int z = -4; z <= 4; z++) {
+                    mutablePos.setWithOffset(pos, x, y, z);
+                    if (!this.level().getBlockState(mutablePos).is(SpawnTags.COASTAL_CRAB_BURY_BLOCKS)
+                            || !this.level().getBlockState(mutablePos.above()).isAir()) {
+                        continue;
+                    }
+                    for (int i = -2; i <= 2; i++) {
+                        for (int j = -1; j <= 1; j++) {
+                            for (int k = -2; k <= 2; k++) {
+                                BlockPos saplingPos = mutablePos.above().offset(i, j, k);
 
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 8; j++) {
-                for (int k = 0; k <= j; k = k > 0 ? -k : 1 - k) {
-                    for (int l = k < j && k > -j ? j : 0; l <= j; l = l > 0 ? -l : 1 - l) {
-                        blockpos$mutableblockpos.setWithOffset(pos, k, i, l);
-                        if (this.level().getBlockState(blockpos$mutableblockpos).is(GCBlocks.CRABAPPLE_SAPLING.get())) {
-                            return true;
+                                if (this.level().getBlockState(saplingPos).is(GCBlocks.CRABAPPLE_SAPLING.get())) {
+                                    return true;
+                                }
+                            }
                         }
                     }
                 }

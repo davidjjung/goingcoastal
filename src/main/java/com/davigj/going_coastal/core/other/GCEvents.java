@@ -1,39 +1,23 @@
 package com.davigj.going_coastal.core.other;
 
 
-import com.davigj.going_coastal.core.GCConfig;
 import com.davigj.going_coastal.core.GoingCoastal;
 import com.davigj.going_coastal.core.other.compat.SpawnCompat;
 import com.davigj.going_coastal.core.registry.GCBlocks;
 import com.davigj.going_coastal.core.registry.GCFeatures;
-import com.farcr.nomansland.NoMansLand;
-import com.farcr.nomansland.common.event.MiscellaneousEvents;
-import com.farcr.nomansland.common.registry.blocks.NMLBlocks;
-import com.farcr.nomansland.common.registry.worldgen.NMLFeatures;
-import com.ninni.spawn.server.entity.mob.CoastalCrab;
 import net.minecraft.core.BlockPos;
-import net.minecraft.data.worldgen.features.TreeFeatures;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.common.CommonHooks;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.level.BlockGrowFeatureEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
-import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.Objects;
 
 import static com.davigj.going_coastal.core.other.compat.ModConstants.NML;
@@ -77,7 +61,7 @@ public class GCEvents {
     }
 
     @SubscribeEvent
-    public static void onSaplingGrowth(EntityJoinLevelEvent event) {
+    public static void fruityPriorities(EntityJoinLevelEvent event) {
         Entity entity = event.getEntity();
         if (SPAWN && entity instanceof LivingEntity living) {
             SpawnCompat.filterGoals(living);

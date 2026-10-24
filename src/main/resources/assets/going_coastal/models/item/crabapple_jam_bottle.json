@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "going_coastal:item/crabapple_jam_bottle"
+  }
+}

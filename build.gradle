@@ -47,11 +47,18 @@ sourceSets.main.resources {
 dependencies {
     implementation "net.neoforged:neoforge:${project.neoforge}"
     implementation("maven.modrinth:blueprint:5JOCYuQM")
-    compileOnly("maven.modrinth:spawn-mod:kmNDEibJ")
+    compileOnly("maven.modrinth:tree-physics:nRQrvQIW")
+    compileOnly("maven.modrinth:sable:fg9dTRz9")
+    compileOnly("maven.modrinth:spawn-mod:OgmUYgeL")
+    compileOnly("maven.modrinth:teallib:lZTBRemW")
     compileOnly("maven.modrinth:no-mans-land:rMdXmqSX")
     compileOnly("maven.modrinth:biolith:byVGeYWw")
+    compileOnly("maven.modrinth:upgrade-aquatic:3ZycbXog")
 
-    runtimeOnly("maven.modrinth:spawn-mod:kmNDEibJ")
+    runtimeOnly("maven.modrinth:spawn-mod:OgmUYgeL")
+    runtimeOnly("maven.modrinth:teallib:lZTBRemW")
+//    runtimeOnly("maven.modrinth:tree-physics:nRQrvQIW")
+//    runtimeOnly("maven.modrinth:sable:fg9dTRz9")
     runtimeOnly("maven.modrinth:no-mans-land:rMdXmqSX")
     runtimeOnly("maven.modrinth:biolith:byVGeYWw")
     runtimeOnly("maven.modrinth:field-guide:ho5SFnTM")
